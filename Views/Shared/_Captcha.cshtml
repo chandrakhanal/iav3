@@ -1,0 +1,35 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+    var captcha = Html.Captcha("Refresh", "Type the text &nbsp;&nbsp;&nbsp;", 5, "The Captcha is required", true);
+    var captchaStr = captcha.RenderMarkup().ToHtmlString().Replace("<br/>", "");
+}
+@*@Html.Captcha(5)
+    <div style="color:red;">
+        @ViewBag.CaptchaErrorMessage
+    </div>*@
+<div style="float:left">
+    @Html.Raw(captchaStr)
+</div>
+<style type="text/css">
+    #dvcaptcha img {
+        width: 140px !important;
+        padding: 0 10px 0 0;
+    }
+
+    input[name='CaptchaInputText'] {
+        width: 30% !important;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #202327;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+        text-align: center;
+    }
+</style>

@@ -1,0 +1,93 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.RegisterViewModel
+@{ ViewBag.Title = "Register User"; }
+
+
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @autocomplete = "off" }))
+    {
+@Html.AntiForgeryToken()
+                <div class="card-body">
+                    <h5 class="card-title">Create User (s)</h5>
+                    <hr />
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="card-header-right">
+                        <i class="icofont icofont-rounded-down"></i>
+                        <a href="@Url.Action("Index", "StateMaster")" title="Click here to close this form"><i class="icofont icofont-arrow-left"></i></a>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Enter Username/Login Id" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.FName, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(m => m.FName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Name" } })
+                                @Html.ValidationMessageFor(m => m.FName, "", new { @class = "error" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter e-mail" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Role, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.Role, new List<SelectListItem>
+                                                                {
+                           new SelectListItem{ Text="Administrator", Value = "Admin" },
+                        }, "Please Select", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
+                            </div>
+                        </div>
+                        <div class="row m-t-25 text-left">
+                            <div class="col-md-12">
+                                <div class="checkbox-fade fade-in-primary">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                        <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" value="Register" class="btn btn-primary m-b-0" onclick="MakePasw();" />
+                            </div>
+                        </div>
+                    </div>
+                </div>}
+    <!-- end of form -->
+</div>
+<!-- Authentication card end -->
+<!-- end of col-sm-12 -->
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @{string rgf = Guid.NewGuid().ToString("n").Substring(0, 8);}
+    <script src="~/Areas/cpanel/assets/scripts/ccryptft.js?v=@rgf" type="text/javascript"></script>
+    <script src="~/Areas/cpanel/assets/scripts/ccryptimp.js?v=@rgf" type="text/javascript"></script>
+}
+

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<IndianArmyWeb.View_Models.StaffDutyIndxVM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of News Article (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","StaffDuty")" class="btn-shadow mb-3 mt-0 btn btn-primary">Add Staff</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StaffDutyId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TelephoneNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EMailId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duties)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StaffZone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StaffDutyId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Appointment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelephoneNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duties)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StaffZone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.StaffDutyId })"><i class="fa fa-edit"></i></a>
+                        <a onclick="Delete(@item.StaffDutyId, this)"><i class="fa fa-trash"></i></a>
+                        @*<button type="button" class="btn btn-danger btn-xs" onclick="Delete(@item.StaffDutyId, this)"><i class="fa fa-trash"></i></button>*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDTSorted('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

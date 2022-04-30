@@ -1,0 +1,859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IndianArmyWeb</RootNamespace>
+    <AssemblyName>IndianArmyWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.4.2.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.4.2.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\auth\authAreaRegistration.cs" />
+    <Compile Include="Areas\cpanel\Controllers\AccountController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\ContactUsController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\Dm1Controller.cs" />
+    <Compile Include="Areas\cpanel\Controllers\ManageController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\MediaCategoryMasterController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\MediaGalleryController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\MenuItemMasterController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\MenuRoleController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\MenuUrlMasterController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\NewsArticleController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\PageContentController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\RegionErrorController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\RolesAdminController.cs" />
+    <Compile Include="Areas\cpanel\Controllers\UserActivityController.cs" />
+    <Compile Include="Areas\cpanel\cpanelAreaRegistration.cs" />
+    <Compile Include="Areas\cpanel\Models\IdentityModels.cs" />
+    <Compile Include="Areas\cpanel\View_Models\AccountViewModels.cs" />
+    <Compile Include="Areas\cpanel\View_Models\AdminViewModel.cs" />
+    <Compile Include="Areas\cpanel\View_Models\GrievanceVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\ManageViewModels.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MediaCategoryMasterVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MediaGalleryVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MenuItemMasterVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MenuRolesVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MenuTreeViewVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\MenuUrlMasterVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\NewsArticleVM.cs" />
+    <Compile Include="Areas\cpanel\View_Models\PageContentVM.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\IRepositories\IContactUsRepository.cs" />
+    <Compile Include="Core\IRepositories\ICSConfRepository.cs" />
+    <Compile Include="Core\IRepositories\IMediaCategoryMasterRepository.cs" />
+    <Compile Include="Core\IRepositories\IMediaGalleryRepository.cs" />
+    <Compile Include="Core\IRepositories\IMenuItemMasterRepository.cs" />
+    <Compile Include="Core\IRepositories\IMenuRoleRepository.cs" />
+    <Compile Include="Core\IRepositories\IMenuUrlMasterRepository.cs" />
+    <Compile Include="Core\IRepositories\INewsArticleRepository.cs" />
+    <Compile Include="Core\IRepositories\IPageContentRepository.cs" />
+    <Compile Include="Core\IRepositories\IRepository.cs" />
+    <Compile Include="Core\IRepositories\IUserActivityRepository.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="DataContext\IASiteContext.cs" />
+    <Compile Include="DataContext\IASiteDbInitializer.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Constants\csConst.cs" />
+    <Compile Include="Infrastructure\Constants\CustomConst.cs" />
+    <Compile Include="Infrastructure\Constants\CustomDropDowns.cs" />
+    <Compile Include="Infrastructure\Constants\CustomEnum.cs" />
+    <Compile Include="Infrastructure\Extensions\AESEncrytDecry.cs" />
+    <Compile Include="Infrastructure\Extensions\cPasswordHasher.cs" />
+    <Compile Include="Infrastructure\Extensions\CustomizePasswordValidation.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\ModelBuilderExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\NotificationExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\Extras\Display\DateTimeLocalizationHelper.cs" />
+    <Compile Include="Infrastructure\Extras\Logging\ExceptionHelpers.cs" />
+    <Compile Include="Infrastructure\Extras\Logging\ILoggingService.cs" />
+    <Compile Include="Infrastructure\Extras\Logging\TraceLoggingService.cs" />
+    <Compile Include="Infrastructure\Extras\Security\UploadedImageValidator.cs" />
+    <Compile Include="Infrastructure\Filters\CSPLActionFilter.cs" />
+    <Compile Include="Infrastructure\Filters\CSPLHeaders.cs" />
+    <Compile Include="Infrastructure\Filters\FooterMenuAttribute.cs" />
+    <Compile Include="Infrastructure\Filters\IPAuth.cs" />
+    <Compile Include="Infrastructure\Filters\NoCacheAttribute.cs" />
+    <Compile Include="Infrastructure\Filters\UserActivityFilter.cs" />
+    <Compile Include="Infrastructure\Filters\UserMenuAttribute.cs" />
+    <Compile Include="Infrastructure\Handlers\CSPLErrorHandler.cs" />
+    <Compile Include="Infrastructure\Handlers\CSPLExcHandler.cs" />
+    <Compile Include="Infrastructure\Helpers\Account\GetWhitelistedIP.cs" />
+    <Compile Include="Infrastructure\Helpers\Account\UserAccountHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\Account\UserActivityHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\AllowExtensionsAttribute.cs" />
+    <Compile Include="Infrastructure\Helpers\Editor\TinyEditorHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\FileDirectory\DirectoryHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\HtmlHelperSiteMenu.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\ISiteLink.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\SiteLinkListHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\SiteMenuItem.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\SiteMenuManager.cs" />
+    <Compile Include="Infrastructure\Helpers\Menu\TreeViewHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\Routing\LowerCaseRoute.cs" />
+    <Compile Include="Infrastructure\Helpers\Routing\SlugHelper.cs" />
+    <Compile Include="Migrations\202204271840504_InitialMigrationOfIAWebsite.cs" />
+    <Compile Include="Migrations\202204271840504_InitialMigrationOfIAWebsite.designer.cs">
+      <DependentUpon>202204271840504_InitialMigrationOfIAWebsite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\CSConf.cs" />
+    <Compile Include="Models\MediaCategoryMaster.cs" />
+    <Compile Include="Models\MediaFile.cs" />
+    <Compile Include="Models\MediaGallery.cs" />
+    <Compile Include="Models\MenuItemMaster.cs" />
+    <Compile Include="Models\MenuRole.cs" />
+    <Compile Include="Models\MenuUrlMaster.cs" />
+    <Compile Include="Models\NewsArticle.cs" />
+    <Compile Include="Models\PageContent.cs" />
+    <Compile Include="Models\RFIMaster.cs" />
+    <Compile Include="Models\SectionMaster.cs" />
+    <Compile Include="Models\SectionTypes.cs" />
+    <Compile Include="Models\TenderDetail.cs" />
+    <Compile Include="Models\TenderDetailCorrigendum.cs" />
+    <Compile Include="Models\TenderMaster.cs" />
+    <Compile Include="Models\TenderMasterCorrigendum.cs" />
+    <Compile Include="Models\UserActivity.cs" />
+    <Compile Include="Persistence\Repositories\ContactUsRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSConfRepository.cs" />
+    <Compile Include="Persistence\Repositories\MediaCategoryMasterRepository.cs" />
+    <Compile Include="Persistence\Repositories\MediaGalleryRepository.cs" />
+    <Compile Include="Persistence\Repositories\MenuItemMasterRepository.cs" />
+    <Compile Include="Persistence\Repositories\MenuRoleRepository.cs" />
+    <Compile Include="Persistence\Repositories\MenuUrlMasterRepository.cs" />
+    <Compile Include="Persistence\Repositories\NewsArticleRepository.cs" />
+    <Compile Include="Persistence\Repositories\PageContentRepository.cs" />
+    <Compile Include="Persistence\Repositories\Repository.cs" />
+    <Compile Include="Persistence\Repositories\UserActivityRepository.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="View_Models\ContactUsVM.cs" />
+    <Compile Include="View_Models\GalleryVM.cs" />
+    <Compile Include="View_Models\HomeVM.cs" />
+    <Compile Include="View_Models\MenuControlVM.cs" />
+    <Compile Include="View_Models\NewsVM.cs" />
+    <Compile Include="View_Models\PagingVM.cs" />
+    <Compile Include="View_Models\UserActivityVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\cpanel\assets\css\main.css" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AX.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\AZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BB.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BJ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\BZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CX.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\CZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DJ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\DZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\EC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\EE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\EG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ER.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ES.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ET.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\EU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FJ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\FR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB-ENG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB-NIR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB-SCT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB-WLS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB-ZET.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GB.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GP.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GQ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\GY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\HU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ID.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ionicons.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IQ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\IT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\JE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\JM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\JO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\JP.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KP.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\KZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LB.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LGBT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\LY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ME.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ML.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MP.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MQ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MX.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\MZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NP.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\NZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\OM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\PY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\QA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\RE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\RO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\RS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\RU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\RW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SB.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SJ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ST.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SX.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\SZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TD.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TH.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TJ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TL.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TO.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TR.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TV.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TW.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\TZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\UA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\UG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\UM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\US-CA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\US.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\UY.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\UZ.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VC.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VG.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VI.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VN.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\VU.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\WF.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\WS.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\XK.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\YE.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\YT.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ZA.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ZM.svg" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ZW.svg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\1.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\10.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\12.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\2.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\3.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\4.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\5.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\6.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\7.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\8.jpg" />
+    <Content Include="Areas\cpanel\assets\images\avatars\9.jpg" />
+    <Content Include="Areas\cpanel\assets\images\indian-Army-av.png" />
+    <Content Include="Areas\cpanel\assets\images\logo-inverse.png" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract1.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract10.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract2.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract3.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract4.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract5.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\abstract6.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\city1.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\city2.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\city3.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\city4.jpg" />
+    <Content Include="Areas\cpanel\assets\images\dropdown-header\city5.jpg" />
+    <Content Include="Areas\cpanel\assets\images\icons-rtl.gif" />
+    <Content Include="Areas\cpanel\assets\images\icons.gif" />
+    <Content Include="Areas\cpanel\assets\images\loading.gif" />
+    <Content Include="Areas\cpanel\assets\images\logo-inverseOld.png" />
+    <Content Include="Areas\cpanel\assets\images\logo.png" />
+    <Content Include="Areas\cpanel\assets\images\originals\city.jpg" />
+    <Content Include="Areas\cpanel\assets\images\originals\citydark.jpg" />
+    <Content Include="Areas\cpanel\assets\images\originals\citynights.jpg" />
+    <Content Include="Areas\cpanel\assets\images\originals\fence-small.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract1.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract10.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract2.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract3.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract4.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract5.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract6.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract7.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract8.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\abstract9.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\city1.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\city2.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\city3.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\city4.jpg" />
+    <Content Include="Areas\cpanel\assets\images\sidebar\city5.jpg" />
+    <Content Include="Areas\cpanel\assets\images\vline-rtl.gif" />
+    <Content Include="Areas\cpanel\assets\images\vline.gif" />
+    <Content Include="Areas\cpanel\assets\scripts\aes.js" />
+    <Content Include="Areas\cpanel\assets\scripts\ccryptft.js" />
+    <Content Include="Areas\cpanel\assets\scripts\ccryptimp.js" />
+    <Content Include="Areas\cpanel\assets\scripts\encimpscript.js" />
+    <Content Include="Areas\cpanel\assets\scripts\main.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\images\logo_light_sm.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\cpanel\Views\web.config" />
+    <Content Include="libman.json" />
+    <Content Include="Areas\cpanel\Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\Login.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\LogOut.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\Register.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ResetPassword.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\SendCode.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\VerifyCode.cshtml" />
+    <Content Include="Areas\cpanel\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\cpanel\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\ContactUs\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\Dm1\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\Dm1\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\SetPassword.cshtml" />
+    <Content Include="Areas\cpanel\Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaCategoryMaster\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaCategoryMaster\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaCategoryMaster\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaGallery\Archives.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaGallery\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaGallery\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaGallery\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\MediaGallery\_ShowMediaFiles.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuItemMaster\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuItemMaster\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuItemMaster\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuItemMaster\MenuSortOrder.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuRole\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuUrlMaster\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\MenuUrlMaster\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\NewsArticle\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\NewsArticle\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\NewsArticle\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\PageContent\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\PageContent\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\PageContent\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\PageContent\PagePreview.cshtml" />
+    <Content Include="Areas\cpanel\Views\RegionError\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Areas\cpanel\Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Areas\cpanel\Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\cpanel\Views\Shared\Lockout.cshtml" />
+    <Content Include="Areas\cpanel\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\cpanel\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\cpanel\Views\Shared\_Notifications.cshtml" />
+    <Content Include="Areas\cpanel\Views\StaffDuty\Create.cshtml" />
+    <Content Include="Areas\cpanel\Views\StaffDuty\Edit.cshtml" />
+    <Content Include="Areas\cpanel\Views\StaffDuty\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\UserActivity\Index.cshtml" />
+    <Content Include="Areas\cpanel\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900.eot" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900.ttf" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900.woff" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900.woff2" />
+    <Content Include="Areas\cpanel\assets\css\fonts\fa-solid-900d41d.eot" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ionicons.eot" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ionicons.ttf" />
+    <Content Include="Areas\cpanel\assets\css\fonts\ionicons.woff" />
+    <Content Include="Areas\cpanel\assets\css\fonts\Linearicons-Free.woff2" />
+    <Content Include="Areas\cpanel\assets\css\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Areas\auth\Views\web.config" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Visitors.txt" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="WebConfigs\appSettings.config" />
+    <Content Include="WebConfigs\connectionStrings.config" />
+    <Content Include="Views\Shared\_Captcha.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\auth\Controllers\" />
+    <Folder Include="Areas\auth\Data\" />
+    <Folder Include="Areas\auth\Views\Shared\" />
+    <Folder Include="Areas\cpanel\Data\" />
+    <Folder Include="Infrastructure\Extras\Authentication\" />
+    <Folder Include="Infrastructure\Extras\Caching\" />
+    <Folder Include="Infrastructure\Extras\Encryption\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTierIA.Commom\NTierIA.Common.csproj">
+      <Project>{34879b8a-17a0-4904-9561-a1caaf8a6c10}</Project>
+      <Name>NTierIA.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204271840504_InitialMigrationOfIAWebsite.resx">
+      <DependentUpon>202204271840504_InitialMigrationOfIAWebsite.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50113</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50113/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

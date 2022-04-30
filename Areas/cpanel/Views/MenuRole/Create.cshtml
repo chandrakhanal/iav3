@@ -1,0 +1,99 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.MenuRoleCrtVM
+
+@{
+    ViewBag.Title = "Create MenuRole";
+}
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <h5 class="card-title">Create MenuRole (s)</h5>
+            <hr />
+            <div class="card-body position-relative row form-group">
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownList("RoleId", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                    <thead>
+                        <tr>
+                            <th> S.No. </th>
+                            <th style="display:none;">  </th>
+                            <th> Menu </th>
+                            <th> <input type="checkbox" name="chkReadAll" />Read </th>
+                            <th> <input type="checkbox" name="chkWriteAll" />Write </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="position-relative row form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="mb-2 mr-2 btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $('input[name="chkSelectAll"]').click(function () {
+                $('input[name="selChkbxSelected"]').not(this).prop('checked', this.checked);
+            });
+            $('input[name="chkReadAll"]').click(function () {
+                $('input[name="selChkRead"]').not(this).prop('checked', this.checked);
+            });
+            $('input[name="chkWriteAll"]').click(function () {
+                $('input[name="selChkWrite"]').not(this).prop('checked', this.checked);
+            });
+            //chkEsmChng();
+        });
+
+        $(document).ready(function () {
+            debugger;
+            $("#RoleId").change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetMenuViewList")',
+                    dataType: "JSON",
+                    data: { roleId: $("#RoleId").val() },
+                    success: function (data) {
+                        var tableTb = $('#myTable tbody');
+                        tableTb.empty();
+                        var a = 0;
+                        $.each(data, function (i, menudt) {
+                            //alert("Hello");
+                            var readchk = "";
+                            var writechk = "";
+                            if (menudt.Read == true) {
+                                readchk="checked";
+                            }
+                            if (menudt.Write == true) {
+                                writechk = "checked";
+                            }
+                            a++;
+                            tableTb.append('<tr><td>' + a.toString() + '</td> <td style="display:none;"><input type="checkbox" name="selChkbxMenuIds" value="' + menudt.MenuId + '" checked/></td> <td>' + menudt.MenuName + '</td> <td><input type="checkbox" name="selChkRead" value="' + menudt.MenuId + '" '+readchk+' /></td> <td><input type="checkbox" name="selChkWrite" value="' + menudt.MenuId + '" '+writechk+' /></td></tr>');
+                            //tableTb.append('<tr><td>' + a.toString() + '</td> <td><input type="checkbox" name="selChkbxMenuIds" value="' + menudt.MenuId + '" checked/></td> <td>' + menudt.MenuName + '</td> <td><input type="checkbox" name="selChkbxSelected" value="' + menudt.Selected + '" checked="true"/></td></tr>');+ a.toString()
+                            //tablesTb.append('<tr><td style="display:none;"> <input type="checkbox" name="SelChkEsmIds" class = "chkEsm" id="chkEsmId" value = "' + esm.EsmId + '" checked /></td><td> <select name="IsSponsored" onchange="drpSponsoredCount();"><option value="true">Yes</option><option value="false">No</option></select> </td><td>' + esm.ServiceNo + '</td><td>' + esm.RankName + '</td><td>' + esm.Name + '</td><td>' + dob + '</td></tr>');
+                        })
+                    },
+                    error: function (ex) {
+                        alert('Ooops! 404');
+                    }
+                })
+            })
+        })
+    </script>
+
+}

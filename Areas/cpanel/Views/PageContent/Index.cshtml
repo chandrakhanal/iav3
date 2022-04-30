@@ -1,0 +1,56 @@
+﻿@model IEnumerable<IndianArmyWeb.Areas.cpanel.View_Models.PageContentIndxVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Page (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","PageContent")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Page</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuItemMasters.SlugMenu)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Content)
+                    </th>*@
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MenuItemMasters.SlugMenu)
+                        </td>
+                        @*<td>
+                            @Html.Raw(item.Content)
+                        </td>*@
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.PageContentId })"><i class="fa fa-edit"></i></a>
+                            <a href="@Url.Action("PagePreview", new { id = item.PageContentId })" target="_blank"><i class="fa fa-eye"></i></a>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.PageContentId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

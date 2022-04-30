@@ -1,0 +1,82 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.MediaGalleryUpVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+    <div class="main-card mb-3 card">
+        @using (Html.BeginForm("Edit", "MediaGallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.MediaGalleryId)
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <h5 class="card-title">Create Menu Item (s)</h5>
+            <hr />
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.MediaCategoryId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownList("MediaCategoryId", (IEnumerable<SelectListItem>)ViewBag.MediaCategories, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MediaCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div><div class="position-relative row form-group">
+                @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control datepickerCss1" } })
+                    @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.ArchiveDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArchiveDate, new { htmlAttributes = new { @class = "form-control datepickerCss1" } })
+                    @Html.ValidationMessageFor(model => model.ArchiveDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.MediaType, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EnumDropDownListFor(model => model.MediaType, "-- Select --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MediaType, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="custom-checkbox custom-control">
+                    @Html.EditorFor(model => model.Archive, new { htmlAttributes = new { @class = "col-sm-3 custom-control-input" } })
+                    @Html.LabelFor(model => model.Archive, htmlAttributes: new { @class = "custom-control-label" })
+                    @Html.ValidationMessageFor(model => model.Archive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="Files" name="Files" class="col-sm-2 col-form-label">Browse</label>
+                <div class="col-md-10">
+                    <input id="Files" type="file" name="Files" multiple class="uploadify-button" />
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="mb-2 mr-2 btn btn-primary" />
+                </div>
+            </div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        }
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

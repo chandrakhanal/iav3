@@ -1,0 +1,114 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.MediaGalleryIndxVM
+@using IndianArmyWeb.Infrastructure.Constants;
+@{
+    int hiddenFileId = 0;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3><i class="fa fa-file-archive-o"></i> List of Files</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                    @if (Model.MediaType == MediaType.Image)
+                    {
+                        int cnt = 1;
+                        <tr valign="bottom">
+                            <td class="listHeader">#</td>
+                            <td class="listHeader">Image</td>
+                            <td class="listHeader">Path</td>
+                            <td class="listHeader"> </td>
+                        </tr>
+                        foreach (var mdfl in Model.iMediaFiles)
+                        {
+                            <tr valign="bottom">
+                                <td class="listHeader">@cnt</td>
+                                <td class="listHeader"><img src="@Url.Content(mdfl.FilePath)" class="img-thumbnail" width=200 height=100 /></td>
+                                <td class="listHeader"><input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" class="form-control" /></td>
+                                <td>
+                                    @*<button type="button" class="btn btn-primary" onclick="copyToClipboard('@hiddenFileId')">Copy text</button>*@
+                                    <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                                </td>
+                            </tr>
+                            cnt++;
+                            hiddenFileId++;
+                        }
+                    }
+                    else if (Model.MediaType == MediaType.Video)
+                    {
+                        int cnt = 1;
+                        <tr valign="bottom">
+                            <td class="listHeader">#</td>
+                            <td class="listHeader">Video</td>
+                            <td class="listHeader">Path</td>
+                            <td class="listHeader"></td>
+                        </tr>
+                        foreach (var mdfl in Model.iMediaFiles)
+                        {
+                            <tr valign="bottom">
+                                <td class="listHeader">@cnt</td>
+                                <td class="listHeader"><video controls="controls" width=200 height=100> <source src="@Url.Content(mdfl.FilePath)" type="video/mp4" /></video></td>
+                                <td class="listHeader"><input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" class="form-control"/></td>
+                                <td class="listHeader">
+                                    @*<button type="button" class="btn btn-primary" onclick="copyToClipboard('@hiddenFileId')">Copy text</button>*@
+                                    <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                                </td>
+                            </tr>
+                            cnt++;
+                            hiddenFileId++;
+                        }
+                    }
+                    else if (Model.MediaType == MediaType.Document)
+                    {
+                        int cnt = 1;
+                        <tr valign="bottom">
+                            <td class="listHeader">#</td>
+                            <td class="listHeader">File</td>
+                            <td class="listHeader">Path</td>
+                            <td class="listHeader"> </td>
+                        </tr>
+                        foreach (var mdfl in Model.iMediaFiles)
+                        {
+                            <tr valign="bottom">
+                                <td class="listHeader">@cnt</td>
+                                <td class="listHeader"><a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a></td>
+                                <td class="listHeader"><input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" class="form-control"/></td>
+                                <td class="listHeader">
+                                    @*<button type="button" class="btn btn-primary" onclick="copyToClipboard('@hiddenFileId')">Copy text</button> <a href="#" class="badge badge-success" name="@hiddenFileId">Copied</a>*@
+                                    <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                                </td>
+                            </tr>
+                            cnt++;
+                            hiddenFileId++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            @Html.ActionLink("Back to List", "Index", null, new {@class="btn btn-primary " })
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jsnew/jquery.min.js"></script>
+<script>
+    function copyToClipboard(hiddenFileId) {
+        var copyFilePath = document.getElementById(hiddenFileId);
+        copyFilePath.select();
+        document.execCommand("copy");
+
+        //alert("Copied the text: " + copyFilePath.value);
+    }
+
+    $(document).ready(function () {
+        $('input[type="button"]').click(function () {
+            $(this).addClass("btn btn-success btn-sm mb-2");
+            $(this).val("Copied");
+        });
+
+    });
+
+</script>

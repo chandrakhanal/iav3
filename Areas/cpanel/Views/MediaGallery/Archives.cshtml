@@ -1,0 +1,104 @@
+﻿@model IEnumerable<IndianArmyWeb.Areas.cpanel.View_Models.MediaGalleryIndxVM>
+
+@{
+    ViewBag.Title = "List of Media Gallery";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Archived Media (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","MediaGallery")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Media Gallery</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MediaType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MediaCategoryMasters.MediaCategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Caption)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PublishDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ArchiveDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Archive)
+                    </th>
+                    <th>
+                        View
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaCategoryMasters.MediaCategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Caption)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PublishDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArchiveDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Archive)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.iMediaFiles.Count)
+                            <a href="@Url.Action("ShowMediaFiles", new { id = item.MediaGalleryId })" target="_blank"><i class="fa fa-eye"></i></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.MediaGalleryId })"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.MediaGalleryId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+        function Delete(id, event) {
+            var TableId = "#myTable";
+            var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+            DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+
+        //Modal
+        $('.btn-yes').click(function () {
+            var url = $('#myModal').data('url');
+            $.get(url, function (data) {
+                $('#myModal').html(data);
+                $('#myModal').modal("show");
+            });
+
+        });
+
+    </script>
+}

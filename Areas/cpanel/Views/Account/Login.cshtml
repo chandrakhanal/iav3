@@ -1,0 +1,101 @@
+﻿@using IndianArmyWeb.Areas.cpanel.View_Models;
+@using CaptchaMvc;
+@model LoginViewModel
+@{
+    ViewBag.Title = "Web Admin Panel of Indian Army Website";
+    Layout = null;
+}
+<title>@ViewBag.Title</title>
+<!-- Meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Control Panel/Admin Panel of Indian Army (IA) Website">
+<meta name="keywords" content="Indian Army, Join Indian Army, Officers, JCOs ORs, NCOs, EMPLOYMENT, Sponsorship, Resettlement Courses, Security Agency, RSB, ZSB, JCO, Other Ranks, Officer">
+<meta name="author" content="Createch Software Pvt. Ltd.">
+<!-- Favicon icon -->
+<link rel="icon" href="~/Content/images/logo_light_sm.png" type="image/x-icon">
+<!-- Required Fremwork -->
+<script type="text/javascript" src="~/Areas/cpanel/assets/scripts/aes.js"></script>
+<script type="text/javascript" src='/js/jsnew/jquery.min.js'></script>
+<link type="text/css" rel="stylesheet" href="~/Areas/cpanel/assets/css/main.css">
+@{string rgf = Guid.NewGuid().ToString("n").Substring(0, 8);}
+<script src="~/Areas/cpanel/assets/scripts/ccryptft.js?v=@rgf" type="text/javascript"></script>
+<script src="~/Areas/cpanel/assets/scripts/ccryptimp.js?v=@rgf" type="text/javascript"></script>
+<div class="app-container app-theme-white body-tabs-shadow">
+    <div class="app-container">
+        <div class="h-100 bg-plum-plate bg-animation">
+            <div class="d-flex h-100 justify-content-center align-items-center">
+                <div class="mx-auto app-login-box col-md-6">
+                    <div class="app-logo-inverse mx-auto mb-3"></div>
+                    <div class="modal-dialog w-100 mx-auto">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="h5 modal-title text-center">
+                                        <img src="~/Content/images/logo_light_sm.png" class="img-responsive" />
+                                        <h4 class="mt-2">
+                                            <span>Please sign in to your account below.</span>
+                                        </h4>
+                                        <br />
+                                    </div>
+                                    @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
+                                    {
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            @Html.ValidationSummary(true, "")
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    }
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="position-relative form-group">
+                                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @Placeholder = "User name", @id = "UserName", @autocomplete = "off" })
+                                                @Html.HiddenFor(m => m.hdns)
+                                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="position-relative form-group">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password", @autocomplete = "off" })
+                                                @Html.HiddenFor(m => m.hdks)
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 alert alert-dark" role="alert">
+                                            <div class="position-relative form-group">
+                                                @Html.Partial("_Captcha")
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input class="btn btn-primary btn-block btn-lg" style="font-size: 1.5em;" type="submit" onclick="Validatepage();" value="Sign in" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="position-relative form-check">
+                                    </div>
+                                </div>
+                                @*<div class="modal-footer clearfix">
+                                        <div class="float-left"><a href="@Url.Action("ForgotPassword","Account")" class="btn-lg btn btn-link">Recover Password</a></div>
+                                        <div class="float-right">
+                                            <button class="btn btn-primary btn-lg" type="submit">Sign in</button>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center text-white opacity-8 mt-3">Copyright © Createch Software Pvt. Ltd. @DateTime.Now.Year</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

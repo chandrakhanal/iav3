@@ -1,0 +1,103 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.MenuItemMasterUpVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+    <div class="main-card mb-3 card">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.MenuId)
+            @Html.HiddenFor(model => model.SortOrder)
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <h5 class="card-title">Create Menu Item (s)</h5>
+            <hr />
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownList("ParentId", (IEnumerable<SelectListItem>)ViewBag.ParentMenus, "Select", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                </div>
+            </div><div class="position-relative row form-group">
+                @Html.LabelFor(model => model.MenuName, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MenuName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.HMenuName, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HMenuName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HMenuName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.PageTitle, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PageTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PageTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.PageHeading, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PageHeading, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PageHeading, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.HPageHeading, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HPageHeading, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HPageHeading, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.PositionType, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EnumDropDownListFor(model => model.PositionType, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PositionType, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.Layout, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EnumDropDownListFor(model => model.Layout, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Layout, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.MenuUrlId, "Section", htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                <div class="col-md-2">
+                    @Html.DropDownList("MenuUrlId", (IEnumerable<SelectListItem>)ViewBag.UrlPrefixs, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuUrlId, "", new { @class = "text-danger" })
+                </div>
+                <div class="custom-checkbox custom-control">
+                    @Html.EditorFor(model => model.IsVisible, new { htmlAttributes = new { @class = "col-sm-2 custom-control-input" } })
+                    @Html.LabelFor(model => model.IsVisible, htmlAttributes: new { @class = "custom-control-label" })
+                    @Html.ValidationMessageFor(model => model.IsVisible, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.ExternalUrl, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ExternalUrl, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="custom-checkbox custom-control">
+                    @Html.EditorFor(model => model.ExternalLink, new { htmlAttributes = new { @class = "col-sm-2 custom-control-input" } })
+                    @Html.LabelFor(model => model.ExternalLink, htmlAttributes: new { @class = "custom-control-label" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="mb-2 mr-2 btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

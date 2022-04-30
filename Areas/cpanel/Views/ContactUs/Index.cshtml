@@ -1,0 +1,86 @@
+﻿@model IEnumerable<IndianArmyWeb.View_Models.ContactUsIndxVM>
+
+@{
+    ViewBag.Title = "List of Grievances / Feedback";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Visitor Feedback (s)</h5>
+
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectCategory)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubjectCategory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-transparent text-danger btn-xs" onclick="Delete(@item.ContactId, this)"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-transparent text-primary btn-xs" onclick="Delete(@item.ContactId, this)" title="Click to mark as resolved"><i class="fa fa-thumbs-up"></i></button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        LoadJDTSorted('#myTable');
+        function Delete(id, event) {
+            var TableId = "#myTable";
+            var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+            DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+    </script>
+}

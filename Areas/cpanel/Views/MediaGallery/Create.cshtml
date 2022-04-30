@@ -1,0 +1,89 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.MediaGalleryCrtVM
+
+@{
+    ViewBag.Title = "Create Menu";
+}
+
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm("Create", "MediaGallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card-body">
+        <h5 class="card-title">Add Media Item (s)</h5>
+        <hr />
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.MediaCategoryId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-3">
+                @Html.DropDownList("MediaCategoryId", (IEnumerable<SelectListItem>)ViewBag.MediaCategories, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MediaCategoryId, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.ArchiveDate, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.ArchiveDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ArchiveDate, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.MediaType, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+            <div class="col-md-2">
+                @Html.EnumDropDownListFor(model => model.MediaType, "-- Select --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MediaType, "", new { @class = "text-danger" })
+            </div>
+            <div class="custom-checkbox custom-control">
+                @Html.EditorFor(model => model.Archive, new { htmlAttributes = new { @class = "col-sm-1 custom-control-input" } })
+                @Html.LabelFor(model => model.Archive, htmlAttributes: new { @class = "custom-control-label" })
+                @Html.ValidationMessageFor(model => model.Archive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            <label for="Files" name="Files" class="col-sm-2 col-form-label">Browse</label>
+            <div class="col-md-10">
+                <input id="Files" type="file" name="Files" multiple required class="uploadify-button" />
+                @*@Html.TextBoxFor(model => model.Files, "", new { @type = "file", @multiple = "multiple", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Files, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="mb-2 mr-2 btn btn-primary" />
+            </div>
+        </div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+        $('#PublishDate').change(function () {
+            var d = new Date();
+            d.setMonth(d.getMonth() + 1);
+            var e = ($.datepicker.formatDate('dd/M/yy', d));
+            $("#ArchiveDate").val(e);
+        });
+    });
+    
+    </script>
+}

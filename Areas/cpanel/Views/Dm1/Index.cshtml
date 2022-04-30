@@ -1,0 +1,87 @@
+﻿@model IEnumerable<IndianArmyWeb.Areas.Admin.View_Models.MenuItemMasterIndxVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuUrlMasters.UrlPrefix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlugMenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HMenuName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageHeading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HPageHeading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menutype)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuUrlMasters.UrlPrefix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SlugMenu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HMenuName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageHeading)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HPageHeading)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVisible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menutype)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MenuId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MenuId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MenuId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNet.Identity
+
+    <div class="widget-content-wrapper">
+        <div class="widget-content-left">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="btn-group">
+                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                            <img width="42" class="rounded-circle" src="~/Areas/cpanel/assets/images/indian-Army-av.png" alt="">
+                            <i class="fa fa-angle-down ml-2 opacity-8"></i> @User.Identity.GetUserName()
+                        </a>
+                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                            <a href='@Url.Action("ChangePassword", "Manage")' class="dropdown-item">Change Password</a>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"> Log off</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="btn-group">
+                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                        <img width="42" class="rounded-circle" src="~/Areas/cpanel/assets/images/indian-Army-av.png" alt="">
+                        <i class="fa fa-angle-down ml-2 opacity-8"></i> Accounts
+                    </a>
+                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                        @Html.ActionLink("Create User", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="dropdown-item" })
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="dropdown-item" })
+                    </div>
+                </div>
+
+            }
+        </div>
+        </div>
+
+
+        @*<li class="user-profile header-notification">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <a href="javascript:void()">
+                        <img src="../../Content//images/user.png" alt="User-Profile-Image">
+                        <span>@User.Identity.GetUserName()</span>
+                        <i class="ti-angle-down"></i>
+                    </a>
+                    <ul class="show-notification profile-notification">
+                        <li>
+                            <i class="ti-lock"></i>
+                            @Html.ActionLink("Change Password", "ChangePassword", "Manage")
+                        </li>
+                        <li>
+                            <i class="ti-layout-sidebar-left"></i>
+                            <a href="javascript:document.getElementById('logoutForm').submit()"> Log off</a>
+                        </li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <a href="javascript:void()">
+                    <img src="../../Content//images/user.png" alt="User-Profile-Image">
+                    <span>Accounts</span>
+                    <i class="ti-angle-down"></i>
+                </a>
+                <ul class="show-notification profile-notification">
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
+            }
+        </li>*@

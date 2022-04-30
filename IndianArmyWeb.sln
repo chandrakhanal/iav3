@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndianArmyWeb", "IndianArmyWeb.csproj", "{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierIA.Common", "..\NTierIA.Commom\NTierIA.Common.csproj", "{34879B8A-17A0-4904-9561-A1CAAF8A6C10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C8FE3F-FE57-405C-AD7A-D04C45BB117D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34879B8A-17A0-4904-9561-A1CAAF8A6C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34879B8A-17A0-4904-9561-A1CAAF8A6C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34879B8A-17A0-4904-9561-A1CAAF8A6C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34879B8A-17A0-4904-9561-A1CAAF8A6C10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F7B7D7D-1A21-4B6A-88B4-7966D2534979}
+	EndGlobalSection
+EndGlobal

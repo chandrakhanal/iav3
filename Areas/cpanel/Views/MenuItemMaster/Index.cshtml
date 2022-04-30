@@ -1,0 +1,109 @@
+﻿@model IEnumerable<IndianArmyWeb.Areas.cpanel.View_Models.MenuItemMasterIndxVM>
+
+@{
+    ViewBag.Title = "List of Menus";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Menu Item (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","MenuItemMaster")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Menu</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParentId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HMenuName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PageTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PageHeading)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HPageHeading)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsVisible)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SlugMenu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PositionType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Layout)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuUrlId)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MenuName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HMenuName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PageTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PageHeading)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HPageHeading)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsVisible)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SlugMenu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Layout)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MenuUrlId)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.MenuId })"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.MenuId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

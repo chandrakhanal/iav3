@@ -1,0 +1,61 @@
+﻿@model IndianArmyWeb.Areas.cpanel.View_Models.PageContentUpVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="main-card mb-3 card">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.PageContentId)
+
+        <div class="card-body">
+            <h5 class="card-title">Edit Page (s)</h5>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.MenuId, "Menu Name", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-12">
+                    @Html.DropDownList("MenuId", (IEnumerable<SelectListItem>)ViewBag.ParentMenus, "Select", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control editorHtml" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+            </div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#Content',
+            mode: "textareas",
+            height: 1000,
+            //width: 600,
+            plugins: "code,autolink,image,imagetools,media,link,lists,pagebreak,style,table,advhr,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template, wordcount, advlist, autosave, visualblocks",
+            images_reuse_filename: true,
+            image_title: true,
+            images_upload_url: '@Url.Action("ImageUpload")',
+            relative_urls: false,
+        });
+    </script>
+}
+

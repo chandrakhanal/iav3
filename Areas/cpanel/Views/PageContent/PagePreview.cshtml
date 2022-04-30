@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "PagePreview";
+}
+
+<!-- Home About Start Here -->
+<div class="about-featured">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h2 class="title2">Page Preview </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                @if (ViewBag.Content != null)
+                {
+                    @Html.Raw(ViewBag.Content as string);
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Home About End Here -->

@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Control Panel/Admin Panel of Directorate General Resettlement (DGR) Website">
+<meta name="keywords" content="Directorate General Resettlement (DGR), Ex-Servicemen, Officers, JCOs ORs, NCOs, EMPLOYMENT, Sponsorship, Resettlement Courses, Security Agency, RSB, ZSB, JCO, Other Ranks, Officer">
+<meta name="author" content="Createch Software Pvt. Ltd.">
+<!-- Favicon icon -->
+<link rel="icon" href="~/Content/images/logo_light_sm.png" type="image/x-icon">
+<!-- Required Fremwork -->
+<link type="text/css" rel="stylesheet" href="~/Areas/cpanel/assets/css/main.css">
+<div class="app-container app-theme-white body-tabs-shadow">
+    <div class="app-container">
+        <div class="h-100 bg-plum-plate bg-animation">
+            <div class="d-flex h-100 justify-content-center align-items-center">
+                <div class="mx-auto app-login-box col-md-6">
+                    <div class="app-logo-inverse mx-auto mb-3"></div>
+                    <div class="modal-dialog w-100 mx-auto">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="h5 modal-title text-center">
+                                        <img src="~/Content/images/logo_light_sm.png" class="img-responsive" />
+                                        <h4 class="mt-2">
+                                            <span>You are Successfully Logout </span>
+                                        </h4>
+                                        <br />
+                                    </div>
+
+                                    <form class="">
+                                        <div class="form-row">
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    @Html.Partial("_Notifications")
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="position-relative form-check">
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer clearfix text-center">                                    
+                                    <div class="float-none">
+                                        <a href="@Url.Action("Login","Account")" class="btn-lg btn btn-outline-primary">Sign in again</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center text-white opacity-8 mt-3">Copyright © Createch Software Pvt. Ltd. @DateTime.Now.Year</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
